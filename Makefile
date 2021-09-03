@@ -6,7 +6,7 @@
 #    By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/03 16:27:42 by hadufer           #+#    #+#              #
-#    Updated: 2021/09/03 17:17:31 by hadufer          ###   ########.fr        #
+#    Updated: 2021/09/03 22:37:53 by hadufer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,11 @@ libft:
 	$(MAKE) -C ./Libft bonus
 
 clean:
+		$(MAKE) -C ./Libft clean
 		${RM} ${OBJS}
 
 fclean:	clean
+		$(MAKE) -C ./Libft fclean
 		${RM} ${CLIENT}
 		${RM} ${SERVER}
 
