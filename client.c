@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 17:48:55 by hadufer           #+#    #+#             */
-/*   Updated: 2021/09/03 16:22:20 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/09/03 18:50:48 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ static int	is_pid_valid_display(const char *str)
 	int	i;
 
 	i = 0;
+	if (!*str)
+	{
+		ft_putstr_fd("Invalid PID\n", 2);
+		return (0);
+	}
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i++]))
