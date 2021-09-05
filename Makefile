@@ -6,7 +6,7 @@
 #    By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/03 16:27:42 by hadufer           #+#    #+#              #
-#    Updated: 2021/09/03 22:37:53 by hadufer          ###   ########.fr        #
+#    Updated: 2021/09/05 15:54:40 by hadufer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,24 +30,28 @@ CFLAGS = -Wall -Wextra -Werror
 %.o: %.c
 			${CC} -c ${CFLAGS} -I./Libft -o $@ $<
 
-${NAME}: all
+all: $(NAME)
 
-all:	libft ${OBJS}
+$(NAME):	libft ${OBJS} $(CLIENT) $(SERVER)
+
+$(CLIENT): libft
 	$(CC) $(CLIENT).c -L./Libft -l:libft.a -I./Libft -o $(CLIENT)
+
+$(SERVER): libft
 	$(CC) $(SERVER).c -L./Libft -l:libft.a -I./Libft -o $(SERVER)
 
 libft:
-	$(MAKE) -C ./Libft bonus
+	$(MAKE) -C ./Libft
 
 clean:
-		$(MAKE) -C ./Libft clean
+		$(MAKE) -C ./Libft $@
 		${RM} ${OBJS}
 
 fclean:	clean
-		$(MAKE) -C ./Libft fclean
+		$(MAKE) -C ./Libft $@
 		${RM} ${CLIENT}
 		${RM} ${SERVER}
 
 re: fclean all
 
-.PHONY:	all clean fclean re ${NAME} libft
+.PHONY:	all clean fclean re libft

@@ -6,7 +6,7 @@
 #    By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/27 17:09:00 by hadufer           #+#    #+#              #
-#    Updated: 2021/09/03 17:22:03 by hadufer          ###   ########.fr        #
+#    Updated: 2021/09/05 15:52:56 by hadufer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,14 +71,13 @@ CFLAGS = -Wall -Wextra -Werror
 %.o: %.c
 			${CC} -c ${CFLAGS} -o $@ $<
 
-${NAME}: all
+all: $(NAME)
 
+$(NAME):	$(OBJS)
+			$(AR) $@ $^
 
-all:	${OBJS}
-			$(AR) ${NAME} ${OBJS}
-
-bonus:	${OBJS} ${OBJS_BONUS}
-			$(AR) ${NAME} ${OBJS} ${OBJS_BONUS}
+bonus:	$(OBJS) ${OBJS_BONUS}
+			$(AR) ${NAME} $^
 
 clean:
 		${RM} ${OBJS} ${OBJS_BONUS}
@@ -88,4 +87,4 @@ fclean:	clean
 
 re: fclean all
 
-.PHONY:	all clean fclean bonus re ${NAME}
+.PHONY:	all clean fclean bonus re
